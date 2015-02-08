@@ -16,7 +16,7 @@ public class Test {
 		
 		Block block1 = new HorizontalBlock();
 		
-		board.placeBlock(block1, 0, 0);
+		board.placeBlockAt(block1, 0, 0);
 		
 		board.print();
 		for (int i = 0; i < 5; i++) {

@@ -17,8 +17,12 @@ public class GameBoard {
 	 * 
 	 * If there is a block at the location, it is replaced by the new block.
 	 */
-	public void placeBlock(Block block, int row, int col) {
+	public void placeBlockAt(Block block, int row, int col) {
 		blocks[row][col] = block;
+	}
+	
+	public Block getBlockAt(int row, int col) {
+		return blocks[row][col];
 	}
 
 	/**
