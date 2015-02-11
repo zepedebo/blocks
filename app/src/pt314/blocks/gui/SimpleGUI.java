@@ -8,6 +8,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import pt314.blocks.game.Block;
 import pt314.blocks.game.GameBoard;
@@ -27,9 +31,66 @@ public class SimpleGUI extends JFrame implements ActionListener {
 
 	private GridButton[][] buttonGrid;
 	
+	private JMenuBar menuBar;
+	private JMenu gameMenu, helpMenu;
+	private JMenuItem newGameMenuItem;
+	private JMenuItem exitMenuItem;
+	private JMenuItem aboutMenuItem;
+	
 	public SimpleGUI() {
 		super("Blocks");
 		
+		initMenus();
+		
+		initBoard();
+		
+		pack();
+		setVisible(true);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	}
+
+	private void initMenus() {
+		menuBar = new JMenuBar();
+		
+		gameMenu = new JMenu("Game");
+		menuBar.add(gameMenu);
+		
+		helpMenu = new JMenu("Help");
+		menuBar.add(helpMenu);
+		
+		newGameMenuItem = new JMenuItem("New game");
+		newGameMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(SimpleGUI.this, "Coming soon...");
+			}
+		});
+		gameMenu.add(newGameMenuItem);
+		
+		gameMenu.addSeparator();
+		
+		exitMenuItem = new JMenuItem("Exit");
+		exitMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		gameMenu.add(exitMenuItem);
+		
+		aboutMenuItem = new JMenuItem("About");
+		aboutMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(SimpleGUI.this, "Sliding blocks!");
+			}
+		});
+		helpMenu.add(aboutMenuItem);
+		
+		setJMenuBar(menuBar);
+	}
+	
+	private void initBoard() {
 		board = new GameBoard(NUM_COLS, NUM_ROWS);
 		buttonGrid = new GridButton[NUM_ROWS][NUM_COLS];
 		
@@ -66,10 +127,6 @@ public class SimpleGUI extends JFrame implements ActionListener {
 					cell.setBackground(Color.RED);
 			}
 		}
-		
-		pack();
-		setVisible(true);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 	@Override
