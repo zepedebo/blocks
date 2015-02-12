@@ -21,6 +21,7 @@ public class GameBoard {
 		blocks[row][col] = block;
 	}
 	
+	// TODO: Check for out of bounds
 	public Block getBlockAt(int row, int col) {
 		return blocks[row][col];
 	}
@@ -34,6 +35,8 @@ public class GameBoard {
 	 * @return <code>true</code> if and only if the move is possible.
 	 */
 	public boolean moveBlock(int row, int col, Direction dir, int dist) {
+		
+		// TODO: throw exception if move is invalid, instead of using return value
 		
 		Block block = blocks[row][col];
 
